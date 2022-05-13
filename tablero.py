@@ -87,7 +87,8 @@ class Tablero:
         pygame.draw.line( screen, LINE_COLOR, v2.get_coordenada(),v8.get_coordenada(), LINE_WIDTH )
         pygame.draw.line( screen, LINE_COLOR, v17.get_coordenada(),v23.get_coordenada(), LINE_WIDTH )
         pygame.draw.circle( screen,LINE_COLOR,v11.get_coordenada(),20)
-
+        
         #Vertices 
         for i in range(0,23,1):
             pygame.draw.circle( screen,LINE_COLOR,self.vertices[i].get_coordenada(),20)
+            
