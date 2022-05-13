@@ -68,3 +68,26 @@ class Tablero:
         pygame.draw.line( screen, LINE_COLOR, v4.get_coordenada(),v19.get_coordenada(), LINE_WIDTH )
         #Vertical Derecho
         pygame.draw.line( screen, LINE_COLOR, v6.get_coordenada(),v21.get_coordenada(), LINE_WIDTH )
+
+        #Cuadrado interno 2
+        #Horizontal Superior
+        pygame.draw.line( screen, LINE_COLOR, v7.get_coordenada(),v9.get_coordenada(), LINE_WIDTH )
+        #Horizontal Inferior
+        pygame.draw.line( screen, LINE_COLOR, v16.get_coordenada(),v18.get_coordenada(), LINE_WIDTH )
+        #Vertical Izquierdo
+        pygame.draw.line( screen, LINE_COLOR, v7.get_coordenada(),v16.get_coordenada(), LINE_WIDTH )
+        #Vertical Derecho
+        pygame.draw.line( screen, LINE_COLOR, v9.get_coordenada(),v18.get_coordenada(), LINE_WIDTH )
+
+        #Lineas adicinales
+        #Horizontales
+        pygame.draw.line( screen, LINE_COLOR, v10.get_coordenada(),v12.get_coordenada(), LINE_WIDTH )
+        pygame.draw.line( screen, LINE_COLOR, v13.get_coordenada(),v15.get_coordenada(), LINE_WIDTH )
+        #Verticales
+        pygame.draw.line( screen, LINE_COLOR, v2.get_coordenada(),v8.get_coordenada(), LINE_WIDTH )
+        pygame.draw.line( screen, LINE_COLOR, v17.get_coordenada(),v23.get_coordenada(), LINE_WIDTH )
+        pygame.draw.circle( screen,LINE_COLOR,v11.get_coordenada(),20)
+
+        #Vertices 
+        for i in range(0,23,1):
+            pygame.draw.circle( screen,LINE_COLOR,self.vertices[i].get_coordenada(),20)
