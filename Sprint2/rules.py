@@ -1,5 +1,15 @@
 import pygame
+import sys
+sys.path.append(".")
+#from product import *
 from tablero import mills
+
+
+def check_mill(idx, board):
+    for i in range(2):
+        if board[mills[idx][i][0]]==board[idx] and board[mills[idx][i][1]]==board[idx]:
+            return True
+    return False
 
 def casillaVacia(i,board):
     if(board[i] == 'x'):

@@ -63,3 +63,46 @@ def checkGameComplete():
 		if cnt1 < 3:
 			gameComplete = 2
 
+
+def drawBoard():
+	global lugaresDisponibles, mill, moveLoc
+	# midgame
+
+	if selectMove:
+		if endGame1 and player==0:
+			lugaresDisponibles = []
+			for loc in range(len(board)):
+				if board[loc] == 'x':
+					lugaresDisponibles.append(loc)
+					x = mul*coords[loc][0]
+					y = mul*coords[loc][1]
+					screen.blit(highImg,(x, y))
+		elif endGame2 and player==1:
+			lugaresDisponibles = []
+			for loc in range(len(board)):
+				if board[loc] == 'x':
+					lugaresDisponibles.append(loc)
+					x = mul*coords[loc][0]
+					y = mul*coords[loc][1]
+					screen.blit(highImg,(x, y))
+		else:
+			n = neighbors[moveLoc]
+			lugaresDisponibles = []
+			for j in n:
+				if board[j] == 'x':
+					lugaresDisponibles.append(j)
+					x = mul*coords[j][0]
+					y = mul*coords[j][1]
+					screen.blit(highImg,(x, y))
+
+
+	# dibuja las piezas
+	for loc in range(len(board)):
+			if board[loc] == 'W':
+				x = mul*coords[loc][0]
+				y = mul*coords[loc][1]
+				screen.blit(whiteImg,(x, y))
+			if board[loc] == 'B':
+				x = mul*coords[loc][0]
+				y = mul*coords[loc][1]
+				screen.blit(blackImg,(x, y))
