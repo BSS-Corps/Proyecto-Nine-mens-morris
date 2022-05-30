@@ -1,3 +1,40 @@
+import pygame
+from time import sleep
+import os
+
+sourceFileDir = os.path.dirname(os.path.abspath(__file__))
+
+fondImgPath = os.path.join(sourceFileDir, '..\..\static\morrisSmall.png')
+
+boardImg = pygame.image.load(fondImgPath)
+
+coords = {
+	0: (70, 720),
+	1: (420,720),
+	2: (770, 720),
+	3: (180, 610),
+	4: (420, 610),
+	5: (660, 610),
+	6: (300, 490),
+	7: (420, 490),
+	8: (540, 490),
+	9: (70, 375),
+	10: (180, 375),
+	11: (300, 375),
+	12: (540, 375),
+	13: (660, 375),
+	14: (770, 375),
+	15: (300, 260),
+	16: (420, 260),
+	17: (540, 260),
+	18: (180, 140),
+	19: (420, 140),
+	20: (660, 140),  
+	21: (70, 30),
+	22: (420, 30),
+	23: (770, 30)
+}
+
 neighbors = {
 			0: [1, 9],
 			1: [0, 2, 4],

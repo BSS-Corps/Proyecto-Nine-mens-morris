@@ -27,3 +27,14 @@ MAX = 50000
 clickables = [pygame.Rect(mul*c[0], mul*c[1], 35, 35) for c in coords.values()]
 board = list('xxxxxxxxxxxxxxxxxxxxxxxx')
 ficha = 'B'
+
+def drawBoard():
+	for loc in range(len(board)):
+		if board[loc] == 'W':
+			x = mul*coords[loc][0]
+			y = mul*coords[loc][1]
+			screen.blit(whiteImg,(x, y))
+		if board[loc] == 'B':
+			x = mul*coords[loc][0]
+			y = mul*coords[loc][1]
+			screen.blit(blackImg,(x, y))
