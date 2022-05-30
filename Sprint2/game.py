@@ -106,3 +106,83 @@ def drawBoard():
 				x = mul*coords[loc][0]
 				y = mul*coords[loc][1]
 				screen.blit(blackImg,(x, y))
+
+while running:
+	screen.fill((255, 255, 255))
+	screen.blit(boardImg, (0, 0))
+
+	endGame1 = checkEndgame(0)
+	endGame2 = checkEndgame(1)
+
+	checkGameComplete()
+
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			running = False
+		if (not mill) and turn < 18 and event.type == pygame.MOUSEBUTTONDOWN:
+			if event.button == 1:
+				for i, area in enumerate(clickables):
+					if area.collidepoint(event.pos):
+						if casillaVacia(i,board):
+							colocarPieza(i,player,board)
+							played = True
+							mill = check_mill(i,board)
+							if not mill:
+								player=changeTurn(player)
+								turn+=1
+							moveLoc = i
+
+		# mill
+		if mill and event.type == pygame.MOUSEBUTTONDOWN:
+			if event.button ==1:
+				for i, area in enumerate(clickables):
+					if area.collidepoint(event.pos):
+						mill=not removerPieza(i,player,board)
+						if not mill:
+							player = changeTurn(player)
+							turn+=1
+							moveLoc=None
+				
+		# midgame
+		if selectMove and turn > 18 and event.type == pygame.MOUSEBUTTONDOWN:
+			if event.button == 1: 
+				for i, area in enumerate(clickables):
+					if area.collidepoint(event.pos):
+						if i in lugaresDisponibles:
+							colocarPieza(i,player,board)
+							board[moveLoc] = 'x'
+							mill = check_mill(i,board)
+							if not mill:
+								player=changeTurn(player)
+								turn+=1
+							played = True
+							moveLoc = i
+							selectMove = False
+
+		# also midgame
+		#Selecciona la pieza a mover o volar
+		if (not played) and (not mill) and turn >= 18 and event.type == pygame.MOUSEBUTTONDOWN:
+			if event.button == 1: 
+				for i, area in enumerate(clickables):
+					if area.collidepoint(event.pos):
+						if (player==0 and board[i]=='B') or (player==1 and board[i]=='W'):
+							turn += 1
+							moveLoc = i
+							selectMove = True
+							
+		# restart logic
+		if gameComplete != 0:
+			#screen.blit(openingText, text_rect)
+			print(f'Gano jugador{gameComplete}')
+			gameComplete = False
+			played = False
+			board = list('xxxxxxxxxxxxxxxxxxxxxxxx')
+			moveLoc = None
+			turn = 0			
+						
+
+	drawBoard()	
+
+	pygame.display.update()
+
+	played=False

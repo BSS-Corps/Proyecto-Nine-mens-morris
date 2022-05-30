@@ -28,3 +28,14 @@ def colocarPieza(i, player, board):
         board[i]='B' 
     else:
         board[i]='W'
+
+def removerPieza(i, player, board):
+    if player == 0:
+        if board[i] == 'W':
+            board[i] = 'x'
+            return True
+    elif player == 1:
+        if board[i] == 'B':
+            board[i] = 'x'
+            return True
+    return False
