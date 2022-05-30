@@ -38,3 +38,39 @@ def drawBoard():
 			x = mul*coords[loc][0]
 			y = mul*coords[loc][1]
 			screen.blit(blackImg,(x, y))
+
+
+while running:
+	screen.fill((255, 255, 255))
+	screen.blit(boardImg, (0, 0))
+	
+	for event in pygame.event.get(): 
+		if event.type == pygame.QUIT:
+			running = False
+
+
+	
+		if (not mill) and turn < 18 and event.type == pygame.MOUSEBUTTONDOWN:
+			if event.button == 1:  # Left mouse button.
+					# Check if the rect collides with the mouse pos.
+				for i, area in enumerate(clickables):
+					if area.collidepoint(event.pos):
+						if casillaVacia(i,board):
+							if(player==0):
+								board[i]='B'
+								player=1
+							else:
+								board[i]='W'
+								player=0 
+							played = True
+							turn+=1
+						else:
+							played = False
+						#moveLoc = i
+						#print(mill)
+		
+
+	
+	drawBoard()
+	
+	pygame.display.update()
