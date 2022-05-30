@@ -4,7 +4,7 @@ import os
 
 sourceFileDir = os.path.dirname(os.path.abspath(__file__))
 
-fondImgPath = os.path.join(sourceFileDir, '..\..\static\morrisSmall.png')
+fondImgPath = os.path.join(sourceFileDir, '..\static\morrisSmall.png')
 
 boardImg = pygame.image.load(fondImgPath)
 
