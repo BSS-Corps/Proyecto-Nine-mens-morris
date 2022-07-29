@@ -79,6 +79,3 @@ class Coordenadas:
                     22: [[16,19],[21,23]],
                     23: [[2,14],[21,22]]
                 }
-
-#coord = Coordenada()
-#coord.coords // coord.mills[0][1]

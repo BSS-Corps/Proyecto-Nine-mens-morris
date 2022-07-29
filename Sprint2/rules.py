@@ -25,7 +25,7 @@ def changeTurn(player):
 
 def colocarPieza(i, player, board):
     if(player==0):
-        board[i]='B' 
+        board[i]='B'
     else:
         board[i]='W'
 
