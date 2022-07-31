@@ -157,6 +157,14 @@ class Game:
                 if control.turn>=18 and control.fase == 2:
                     fase2.fase(control,event)
                     mill.aMill(control,event,fase2)
+                    if fase2.player.nro == 0:
+                        control.endGame1 = fase2.rules.checkEndgame(
+                            fase2.player, fase2.board.board)
+                    else:
+                        control.endGame2 = fase2.rules.checkEndgame(
+                            fase2.player, fase2.board.board)
+                    control.gameComplete = fase2.rules.checkGameComplete(
+                        control, fase2.board.board)
                     
 
                 # restart logic
