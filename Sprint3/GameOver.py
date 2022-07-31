@@ -1,9 +1,12 @@
 import pygame
+import sys
 
 class GameOver():
     running = True
 
     def chekGameOver(self,event):
         if event.type == pygame.QUIT:
-            self.running = False
+            pygame.quit()
+            sys.exit()
+            #self.running = False
         

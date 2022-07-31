@@ -1,5 +1,7 @@
 import pygame
 
+from Oponent import Oponent
+
 class FaseIntermedia():
     
     def __init__(self,player,board,rules,clickables):
@@ -9,6 +11,7 @@ class FaseIntermedia():
         self.clickables = clickables
     
     def fase(self,control,event):
+
         if (not control.played) and (not control.mill) and event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1: 
                 for i, area in enumerate(self.clickables):

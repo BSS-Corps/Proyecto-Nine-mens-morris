@@ -12,7 +12,7 @@ class Rules():
 
     def check_mill(self, idx, board):
         for i in range(2):
-            if board[coord.mills[idx][i][0]]==board[idx] and board[coord.mills[idx][i][1]]==board[idx]:
+            if (board[coord.mills[idx][i][0]]==board[idx]) and (board[coord.mills[idx][i][1]]==board[idx]):
                 return True
         return False
 
@@ -77,48 +77,3 @@ class Rules():
             if cnt1 < 3:
                 return 2
             return 0
-
-        # if player.type == 0:
-        #     if board[i] == 'W':
-        #         board[i] = 'x'
-        #         return True
-        # elif player == 1:
-        #     if board[i] == 'B':
-        #         board[i] = 'x'
-        #         return True
-        # return False
-
-    # def check_mill(self, idx, board):
-    #     for i in range(2):
-    #         if self.board[self.mills[idx][i][0]]==self.board[idx] and self.board[self.mills[idx][i][1]]==board[idx]:
-    #             return True
-    #     return False
-
-    # def casillaVacia(self, i,board):
-    #     if(self.board[i] == 'x'):
-    #         return True
-    #     return False
-
-    # def changeTurn(self):
-    #     if(self.player==0):
-    #         self.player=1
-    #     else:
-    #         player=0
-    #     return player
-
-    # def colocarPieza(self, i, board):
-    #     if(self.player ==0):
-    #         board[i]='B' 
-    #     else:
-    #         board[i]='W'
-
-    # def removerPieza(self, i, board):
-    #     if self.player == 0:
-    #         if board[i] == 'W':
-    #             board[i] = 'x'
-    #             return True
-    #     elif self.player == 1:
-    #         if board[i] == 'B':
-    #             board[i] = 'x'
-    #             return True
-    #     return False

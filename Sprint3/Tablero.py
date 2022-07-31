@@ -1,4 +1,3 @@
-
 import os
 import pygame
 
@@ -22,44 +21,6 @@ class Tablero:
         self.board = list("xxxxxxxxxxxxxxxxxxxxxxxx")
         #self.gameComplete = 0
         self.selectMove = False
-
-    # def checkEndgame(self, player):
-    #     global endGame
-    #     endGame = False
-    #     cnt = 0
-    #     for b in self.board:
-    #         if b == player.simb:
-    #             cnt+=1
-    #     if cnt == 3:
-    #         return True
-    #     return False
-        # if(player.type ==0):
-        #     for b in self.board:
-        #         if b == 'B':
-        #             cnt += 1
-        #     if cnt == 3:
-        #         return True
-        # elif(player==1):
-        #     for b in self.board:
-        #         if b == 'W':
-        #             cnt += 1
-        #     if cnt == 3:
-        #         return True
-        # return False
-
-
-    # def checkGameComplete(self):
-    #     if turn > 18:
-    #         cnt1, cnt2 = 0, 0
-    #         for b in self.board:
-    #             if b == 'B':
-    #                 cnt1 += 1
-    #             if b == 'W':
-    #                 cnt2 += 1
-    #         if cnt2 < 3:
-    #             self.gameComplete = 1
-    #         if cnt1 < 3:
-    #             self.gameComplete = 2
 
 
     def drawBoard(self,screen,control,player):

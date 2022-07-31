@@ -12,8 +12,3 @@ class Mill():
                                 fase.player = fase.rules.changeTurn(fase.player)
                                 control.turn+=1
                                 control.moveLoc=None
-                                if control.turn > 18:
-                                    if fase.player.nro == 0:
-                                        control.endGame1 = fase.rules.checkEndgame(fase.player,fase.board.board)
-                                    control.endGame2 = fase.rules.checkEndgame(fase.player,fase.board.board)
-                                    control.gameComplete = fase.rules.checkGameComplete(control,fase.board.board)
