@@ -32,6 +32,7 @@ class FaseIntermedia():
                             if not control.mill:
                                 self.player=self.rules.changeTurn(self.player)
                                 control.turn+=1
+                                control.moveLoc=None
                             control.played = True
                             control.moveLoc = i
                             self.board.selectMove = False

@@ -13,9 +13,7 @@ from FaseIntermedia import FaseIntermedia
 from MIll import Mill
 
 
-
 class Game:
-
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((500, 630))
@@ -27,13 +25,16 @@ class Game:
         self.game = GameOver()
 
         self.clickables = [
-            pygame.Rect(MUL * c[0], MUL * c[1], 35, 35) for c in self.coord.coords.values()
-            ]
+            pygame.Rect(MUL * c[0], MUL * c[1], 35, 35)
+            for c in self.coord.coords.values()
+        ]
 
         self.player = Player(0, "W")
         self.control = Controlador()
-        self.fase1 = FaseTemprana(self.player, self.board, self.rules, self.clickables)
-        self.fase2 = FaseTemprana(self.player, self.board, self.rules, self.clickables)
+        self.fase1 = FaseTemprana(self.player, self.board, self.rules,
+                                  self.clickables)
+        self.fase2 = FaseTemprana(self.player, self.board, self.rules,
+                                  self.clickables)
         self.mill = Mill()
 
         self.clock = pygame.time.Clock()
@@ -61,7 +62,7 @@ class Game:
                 #if event.type == pygame.QUIT:
                 #    running = False
 
-                if control.turn < 18 and control.fase == 1 and fase1.player.nro==0:
+                if control.turn < 18 and control.fase == 1 and fase1.player.nro == 0:
                     fase1.fase(control, event)
                     mill.aMill(control, event, fase1)
 
@@ -69,10 +70,10 @@ class Game:
                 if control.turn == 18 and control.fase == 1:
                     control.changephase()
                     print(f"PASANDO DE FASE {control.fase-1} a {control.fase}")
-                    fase2 = FaseIntermedia(fase1.player, fase1.board, fase1.rules,
-                                        fase1.clickables)
+                    fase2 = FaseIntermedia(fase1.player, fase1.board,
+                                           fase1.rules, fase1.clickables)
 
-                if control.turn >= 18 and control.fase == 2 and fase2.player.nro==0:
+                if control.turn >= 18 and control.fase == 2 and fase2.player.nro == 0:
                     fase2.fase(control, event)
                     mill.aMill(control, event, fase2)
                     if fase2.player.nro == 0:
@@ -94,11 +95,9 @@ class Game:
                     control.turn = 0
 
             fase2.board.drawBoard(screen, control, player)
-            #print(board.drawBoard(screen))
-
             pygame.display.update()
             clock.tick(20)
-
+            
             if control.turn <= 18 and (not control.mill) and control.played:
                 oponente = Oponent()
                 oponente.minimaxPrimeraFase(fase1.board.board, 1, True)
@@ -113,11 +112,16 @@ class Game:
                 oponente = Oponent()
                 oponente.minimax(fase2.board.board, 1, True)
                 fase2.board.board = oponente.selectedMove.copy()
-                print(fase2.board.board)
                 fase2.player = rules.changeTurn(fase2.player)
                 control.turn += 1
-                control.mill=False
+                control.moveLoc=None
+                fase2.board.selectMove=False
+                control.mill = False
                 control.played = False
+
+            fase2.board.drawBoard(screen, control, player)
+            pygame.display.update()
+            clock.tick(20)
 
     def oponente_real(self):
         screen = self.screen
@@ -142,21 +146,22 @@ class Game:
                 game.chekGameOver(event)
                 #if event.type == pygame.QUIT:
                 #    running = False
-                
-                if control.turn<18 and control.fase == 1:
-                    fase1.fase(control,event)
-                    mill.aMill(control,event,fase1)
-                    
+
+                if control.turn < 18 and control.fase == 1:
+                    fase1.fase(control, event)
+                    mill.aMill(control, event, fase1)
+
                 # earlyGame --> midGame
-                if control.turn == 18 and control.fase ==1:
+                if control.turn == 18 and control.fase == 1:
                     control.changephase()
                     print(f"PASANDO DE FASE {control.fase-1} a {control.fase}")
-                    fase2aux = FaseIntermedia(fase1.player,fase1.board,fase1.rules,fase1.clickables)
+                    fase2aux = FaseIntermedia(fase1.player, fase1.board,
+                                              fase1.rules, fase1.clickables)
                     fase2 = fase2aux
-                
-                if control.turn>=18 and control.fase == 2:
-                    fase2.fase(control,event)
-                    mill.aMill(control,event,fase2)
+
+                if control.turn >= 18 and control.fase == 2:
+                    fase2.fase(control, event)
+                    mill.aMill(control, event, fase2)
                     if fase2.player.nro == 0:
                         control.endGame1 = fase2.rules.checkEndgame(
                             fase2.player, fase2.board.board)
@@ -165,7 +170,6 @@ class Game:
                             fase2.player, fase2.board.board)
                     control.gameComplete = fase2.rules.checkGameComplete(
                         control, fase2.board.board)
-                    
 
                 # restart logic
                 if control.gameComplete != 0:
@@ -174,13 +178,13 @@ class Game:
                     control.gameComplete = False
                     control.played = False
                     board = Tablero()
-                    fase1 = FaseTemprana(player,board,rules,clickables)
-                    fase2 = FaseTemprana(player,board,rules,clickables)
+                    fase1 = FaseTemprana(player, board, rules, clickables)
+                    fase2 = FaseTemprana(player, board, rules, clickables)
                     control.moveLoc = None
                     control.turn = 0
 
-            fase2.board.drawBoard(screen,control,player)
+            fase2.board.drawBoard(screen, control, player)
             #print(board.drawBoard(screen))
 
             pygame.display.update()
-            control.played=False
+            control.played = False

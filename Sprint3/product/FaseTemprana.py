@@ -23,6 +23,3 @@ class FaseTemprana():
                                 self.player=self.rules.changeTurn(self.player)
                                 control.turn+=1
                             control.moveLoc = i
-    
-        
-        

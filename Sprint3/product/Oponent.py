@@ -159,7 +159,7 @@ class Oponent():
                 old_v = v
                 v = max(v, self.minimax(p, depth - 1, False))
                 if v > old_v and depth==1:
-                    self.selectedMove = p.copy()
+                    self.selectedMove = posibles[0].copy()
             return v
         else:
             v = 100000
@@ -168,7 +168,7 @@ class Oponent():
                 old_v=v
                 v = min(v, self.minimax(p, depth - 1, True))
                 if v < old_v and depth==1:
-                    self.selectedMove=p.copy()
+                    self.selectedMove=posibles[0].copy()
             return v
 
     def minimaxPrimeraFase(self, board, depth, max_mode):
