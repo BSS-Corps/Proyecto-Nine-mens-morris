@@ -4,7 +4,6 @@ class Mill():
 
     def aMill(self,control,event,fase):
         if control.mill and event.type == pygame.MOUSEBUTTONDOWN:
-            print("Mill")
             if event.button ==1:
                     for i, area in enumerate(fase.clickables):
                         if area.collidepoint(event.pos):

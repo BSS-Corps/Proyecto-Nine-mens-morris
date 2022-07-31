@@ -53,7 +53,8 @@ class Tablero:
                         self.x = MUL*self.coord.coords[j][0]
                         self.y = MUL*self.coord.coords[j][1]
                         screen.blit(self.ficha.highImg,(self.x, self.y))
-
+        else:
+            control.lugaresDisponibles=[]
         for loc in range(len(self.board)):
             if self.board[loc] == 'W':
                 self.x = MUL*self.coord.coords[loc][0]
