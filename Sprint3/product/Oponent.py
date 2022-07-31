@@ -171,6 +171,28 @@ class Oponent():
                     self.selectedMove=posibles[0].copy()
             return v
 
+    def selectOpMov(self,board):
+        v=-100000
+        mov=None
+        posibles=self.movs_faseIntermedia(board,"W")
+        for p in posibles:
+            new_v=self.faseIntermediaTurn(p)
+            if new_v>v:
+                v=new_v
+                mov=p.copy()
+        return mov
+
+    def selectInitOpMov(self,board):
+        v=-100000
+        mov=None
+        posibles=self.movs_faseTemprana(board,"W")
+        for p in posibles:
+            new_v=self.faseTempranaTurn(p)
+            if new_v>v:
+                v=new_v
+                mov=p.copy()
+        return mov
+
     def minimaxPrimeraFase(self, board, depth, max_mode):
         if depth == 0:
             return self.faseTempranaTurn(board)

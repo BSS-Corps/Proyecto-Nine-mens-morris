@@ -1,5 +1,5 @@
-# from Ficha import Ficha
-# from Tablero import Tablero
+from Ficha import Ficha
+from Tablero import Tablero
 from Coordenadas import Coordenadas
 import sys
 sys.path.append(".")

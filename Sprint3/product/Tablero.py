@@ -17,7 +17,7 @@ class Tablero:
     ficha = Ficha()
 
     def __init__(self):
-        self.boardImg = pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../static/morrisSmall.png'))
+        self.boardImg = pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../static/morrisSmall.png'))
         self.board = list("xxxxxxxxxxxxxxxxxxxxxxxx")
         #self.gameComplete = 0
         self.selectMove = False

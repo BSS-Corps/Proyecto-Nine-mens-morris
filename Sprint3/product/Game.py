@@ -12,6 +12,14 @@ from FaseTemprana import FaseTemprana
 from FaseIntermedia import FaseIntermedia
 from MIll import Mill
 
+pygame.init()
+Font = pygame.font.SysFont('Roboto Mono',40)
+
+win1Text=Font.render("Gana Jugador 1",False,(0,255,0))
+win2Text=Font.render("Gana Jugador 2",False,(0,0,255))
+win3Text=Font.render("Gana Computadora",False,(255,0,0))
+winText=Font.render("Ganaste!",False,(0,125,255))
+# result=
 
 class Game:
     def __init__(self):
@@ -38,6 +46,12 @@ class Game:
         self.mill = Mill()
 
         self.clock = pygame.time.Clock()
+
+    def drawText(self):
+        if self.control.gameComplete == 1:
+            self.screen.blit(win1Text, (50, 550))
+        if self.control.gameComplete == 2:
+            self.screen.blit(win2Text, (50, 550))
 
     def oponente_virtual(self):
         screen = self.screen
@@ -86,6 +100,10 @@ class Game:
                 if control.gameComplete != 0:
                     #screen.blit(openingText, text_rect)
                     print(f'Gano jugador{control.gameComplete}')
+                    if control.gameComplete==1:
+                        screen.blit(winText,(50,550))
+                    if control.gameComplete==2:
+                        screen.blit(win3Text,(50,550))
                     control.gameComplete = False
                     control.played = False
                     board = Tablero()
@@ -100,8 +118,8 @@ class Game:
             
             if control.turn <= 18 and (not control.mill) and control.played:
                 oponente = Oponent()
-                oponente.minimaxPrimeraFase(fase1.board.board, 1, True)
-                fase1.board.board = oponente.selectedMove.copy()
+                newBoard=oponente.selectInitOpMov(fase1.board.board)
+                fase1.board.board = newBoard.copy()
                 fase1.player = rules.changeTurn(fase1.player)
                 control.turn += 1
                 control.played = False
@@ -110,8 +128,8 @@ class Game:
             if control.turn >= 18 and (not control.mill) and (
                     not fase2.board.selectMove) and control.played:
                 oponente = Oponent()
-                oponente.minimax(fase2.board.board, 1, True)
-                fase2.board.board = oponente.selectedMove.copy()
+                newBoard=oponente.selectOpMov(fase2.board.board)
+                fase2.board.board = newBoard.copy()
                 fase2.player = rules.changeTurn(fase2.player)
                 control.turn += 1
                 control.moveLoc=None
@@ -175,6 +193,10 @@ class Game:
                 if control.gameComplete != 0:
                     #screen.blit(openingText, text_rect)
                     print(f'Gano jugador{control.gameComplete}')
+                    if control.gameComplete==1:
+                        screen.blit(win1Text,(50,550))
+                    if control.gameComplete==2:
+                        screen.blit(win2Text,(50,550))
                     control.gameComplete = False
                     control.played = False
                     board = Tablero()
