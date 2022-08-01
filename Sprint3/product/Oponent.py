@@ -1,6 +1,5 @@
 from Coordenadas import Coordenadas
 
-
 class Oponent():
     def __init__(self):
         self.level = 5
@@ -148,29 +147,6 @@ class Oponent():
         if n == 0:
             mov.append(board.copy())
 
-    def minimax(self, board, depth, max_mode):
-        if depth == 0:
-            return self.faseIntermediaTurn(board)
-
-        if max_mode:
-            v = -100000
-            posibles = self.movs_faseIntermedia(board, "W")
-            for p in posibles:
-                old_v = v
-                v = max(v, self.minimax(p, depth - 1, False))
-                if v > old_v and depth==1:
-                    self.selectedMove = posibles[0].copy()
-            return v
-        else:
-            v = 100000
-            posibles = self.movs_faseIntermedia(board, "B")
-            for p in posibles:
-                old_v=v
-                v = min(v, self.minimax(p, depth - 1, True))
-                if v < old_v and depth==1:
-                    self.selectedMove=posibles[0].copy()
-            return v
-
     def selectOpMov(self,board):
         v=-100000
         mov=None
@@ -192,35 +168,6 @@ class Oponent():
                 v=new_v
                 mov=p.copy()
         return mov
-
-    def minimaxPrimeraFase(self, board, depth, max_mode):
-        if depth == 0:
-            return self.faseTempranaTurn(board)
-
-        if max_mode:
-            v = -100000
-            if depth <=18:
-                posibles = self.movs_faseTemprana(board, "W")
-            else:
-                posibles = self.movs_faseIntermedia(board, "W")
-            for p in posibles:
-                old_v = v
-                v = max(v, self.minimaxPrimeraFase(p, depth - 1, False))
-                if v > old_v :
-                    self.selectedMove = p.copy()
-            return v
-        else:
-            v = 100000
-            if depth <=18:
-                posibles = self.movs_faseTemprana(board, "B")
-            else:
-                posibles = self.movs_faseIntermedia(board, "B")
-            for p in posibles:
-                old_v=v
-                v = min(v, self.minimaxPrimeraFase(p, depth - 1, True))
-                if v<old_v:
-                    self.selectedMove=p.copy()
-            return v
 
     def movs_faseTemprana(self,board,color):
         movs=[]

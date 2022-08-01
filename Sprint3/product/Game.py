@@ -47,12 +47,6 @@ class Game:
 
         self.clock = pygame.time.Clock()
 
-    def drawText(self):
-        if self.control.gameComplete == 1:
-            self.screen.blit(win1Text, (50, 550))
-        if self.control.gameComplete == 2:
-            self.screen.blit(win2Text, (50, 550))
-
     def oponente_virtual(self):
         screen = self.screen
         board = self.board
@@ -99,20 +93,20 @@ class Game:
 
                 if control.gameComplete != 0:
                     #screen.blit(openingText, text_rect)
-                    print(f'Gano jugador{control.gameComplete}')
-                    if control.gameComplete==1:
-                        screen.blit(winText,(50,550))
-                    if control.gameComplete==2:
-                        screen.blit(win3Text,(50,550))
-                    control.gameComplete = False
+                    # print(f'Gano jugador{control.gameComplete}')
+                    # control.gameComplete = False
                     control.played = False
-                    board = Tablero()
+                    # board = Tablero()
                     fase1 = FaseTemprana(player, board, rules, clickables)
                     fase2 = FaseTemprana(player, board, rules, clickables)
                     control.moveLoc = None
                     control.turn = 0
 
             fase2.board.drawBoard(screen, control, player)
+            if control.gameComplete==1:
+                screen.blit(winText,(50,550))
+            if control.gameComplete==2:
+                screen.blit(win3Text,(50,550))
             pygame.display.update()
             clock.tick(20)
             
@@ -192,21 +186,20 @@ class Game:
                 # restart logic
                 if control.gameComplete != 0:
                     #screen.blit(openingText, text_rect)
-                    print(f'Gano jugador{control.gameComplete}')
-                    if control.gameComplete==1:
-                        screen.blit(win1Text,(50,550))
-                    if control.gameComplete==2:
-                        screen.blit(win2Text,(50,550))
-                    control.gameComplete = False
+                    # print(f'Gano jugador{control.gameComplete}')
+
+                    # control.gameComplete = False
                     control.played = False
-                    board = Tablero()
+                    # board = Tablero()
                     fase1 = FaseTemprana(player, board, rules, clickables)
                     fase2 = FaseTemprana(player, board, rules, clickables)
                     control.moveLoc = None
                     control.turn = 0
 
             fase2.board.drawBoard(screen, control, player)
-            #print(board.drawBoard(screen))
-
+            if control.gameComplete==1:
+                screen.blit(win1Text,(50,550))
+            if control.gameComplete==2:
+                screen.blit(win2Text,(50,550))
             pygame.display.update()
             control.played = False

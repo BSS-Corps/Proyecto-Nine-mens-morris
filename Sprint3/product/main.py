@@ -56,9 +56,6 @@ def play():
         for event in pygame.event.get():
             
             juego.game.chekGameOver(event)
-            # if event.type == pygame.QUIT:
-            #     pygame.quit()
-            #     sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
@@ -67,7 +64,7 @@ def play():
                     juego.oponente_real() #cambiarcheckForInput
 
                 if SOLITARIO.checkForInput(PLAY_MOUSE_POS):
-                    juego.oponente_virtual() #cambiarXD
+                    juego.oponente_virtual() 
 
         pygame.display.update()
 
